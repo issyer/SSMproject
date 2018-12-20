@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body  style="background:url(Image/microsoft.jpg);
+    background-size:100% ,100%;
+    background-repeat:no-repeat;">
+<form action="login.do" style="	padding-left:50%;
+	padding-top:15%;"method="post" id="test_form">
+    <table>
+        <tr><td>用户邮箱：</td><td><input type="text" name="email"/></td><td></td></tr>
+        <tr><td>用户密码：</td><td><input type="text" name="password"/></td><td><a style="text-decoration:none;"href ="">忘记密码?</a></td></tr>
+        <tr><td>验证码：</td><td><input type="text" name="passwordagain"  value="" placeholder="请输入验证码（不区分大小写）" class="input-val"/></td><td><canvas id="canvas" width="100" height="43"></canvas></td></tr>
+        <tr><td></td><td><button class="btn" type="button"  style="width:150px">登录</button>
+        </td></tr>
+    </table>
+</form>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript"  src="js/myjs.js"></script>
+</body>
+</html>

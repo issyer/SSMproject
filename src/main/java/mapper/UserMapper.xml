@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <select id="loginCheckByIdcardNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) total from staff_personal where idcardnum = #{idcardnum}
+    </select>
+
+    <select id="loginCheckByEmail" parameterType="java.lang.String" resultType="java.lang.String">
+        select password from staff_work where work_email = #{email}
+    </select>
+
+    <resultMap id="staffworkmap" type="staffwork">
+        <id property="workId" column="work_id"/>
+        <result property="name" column="name"/>
+        <result property="job" column="job"/>
+        <result property="department" column="department"/>
+        <result property="entryTime" column="entry_time"/>
+        <result property="workDesk" column="work_desk"/>
+        <result property="jobHead" column="job_head"/>
+        <result property="departmentHead" column="department_head"/>
+    </resultMap>
+    <select id="selectStaffWork" parameterType="java.lang.String" resultMap="staffworkmap">
+        select work_id,name,job,department,entry_time,work_desk,job_head,department_head from staff_work where work_email = #{email}
+    </select>
+
+    <update id="updateStaffPersonal" parameterType="staffpersonal">
+        update staff_personal
+        set name = #{name}, age = #{age}, sex = #{sex},  birth = #{birth},  tel = #{tel},
+        college = #{college},  profession = #{profession},  address = #{address},  nation = #{nation},
+        political_status = #{politicalStatus} where idcardnum = #{idcardNum}
+
+    </update>
+
+    <insert id="insertDeskChange" parameterType="deskchange">
+        insert into workdesk_change values (#{workId},#{deskNow},#{staffName},#{deskWant},#{netOutside},#{netInside},'未审核',#{date})
+    </insert>
+
+    <resultMap id="deskchangemap" type="deskchange">
+        <result property="deskNow" column="desk_now"/>
+        <result property="deskWant" column="desk_want"/>
+        <result property="netOutside" column="net_outside"/>
+        <result property="netInside" column="net_inside"/>
+        <result property="status" column="status"/>
+        <result property="date" column="date"/>
+    </resultMap>
+    <select id="selectDeskChange" parameterType="java.lang.String" resultMap="deskchangemap">
+        select desk_now,desk_want,net_outside,net_inside,status ,date from workdesk_change where workid = #{workId}
+    </select>
+
+    <resultMap id="deskchangemap2" type="deskchange">
+        <result property="deskNow" column="desk_now"/>
+        <result property="deskWant" column="desk_want"/>
+        <result property="netOutside" column="net_outside"/>
+        <result property="netInside" column="net_inside"/>
+        <result property="status" column="status"/>
+        <result property="date" column="date"/>
+        <result property="staffName" column="staff_name"/>
+    </resultMap>
+    <select id="selectDeskChange2" parameterType="java.lang.String" resultMap="deskchangemap2">
+        select desk_now,desk_want,net_outside,net_inside,status ,staff_name,date from workdesk_change where status = '未审核'
+    </select>
+
+    <insert id="insertResign" parameterType="resign">
+        insert into resign_request values (#{workId},#{date},#{name},#{leaveDate},#{reason},#{tel},#{postAddress},'未审核')
+    </insert>
+
+    <resultMap id="resignmap" type="resign">
+        <result property="date" column="date"/>
+        <result property="leaveDate" column="leave_date"/>
+        <result property="reason" column="reason"/>
+        <result property="tel" column="tel"/>
+        <result property="postAddress" column="post_address"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="selectResign" parameterType="java.lang.String" resultMap="resignmap">
+        select date , leave_date,reason,tel,post_address,status from resign_request where workid = #{workId}
+    </select>
+
+    <resultMap id="resignmap2" type="resign">
+        <result property="date" column="date"/>
+        <result property="name" column="name"/>
+        <result property="leaveDate" column="leave_date"/>
+        <result property="reason" column="reason"/>
+        <result property="tel" column="tel"/>
+        <result property="postAddress" column="post_address"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="selectResign2" parameterType="java.lang.String" resultMap="resignmap2">
+        select date , name,leave_date,reason,tel,post_address,status from resign_request where status = '未审核'
+    </select>
+
+    <insert id="insertAppeal" parameterType="appeal">
+        insert into workday_request values (#{workId},#{date},#{name},#{notAgreeDate},#{reason},#{zhengming},#{type},#{others},'未审核')
+    </insert>
+
+    <resultMap id="appealmap" type="appeal">
+        <result property="date" column="date"/>
+        <result property="notAgreeDate" column="not_agree_date"/>
+        <result property="reason" column="reason"/>
+        <result property="zhengming" column="zhengming"/>
+        <result property="type" column="type"/>
+        <result property="others" column="others"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="selectAppeal" parameterType="java.lang.String" resultMap="appealmap">
+        select date , not_agree_date ,reason,zhengming,type,others,status from workday_request where workid = #{workId}
+    </select>
+
+    <resultMap id="appealmap2" type="appeal">
+        <result property="date" column="date"/>
+        <result property="name" column="name"/>
+        <result property="notAgreeDate" column="not_agree_date"/>
+        <result property="reason" column="reason"/>
+        <result property="zhengming" column="zhengming"/>
+        <result property="type" column="type"/>
+        <result property="others" column="others"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="selectAppeal2" parameterType="java.lang.String" resultMap="appealmap2">
+        select date , name,not_agree_date ,reason,zhengming,type,others,status from workday_request where status = '未审核'
+    </select>
+
+    <resultMap id="noticemap" type="notice">
+        <id property="noticeId" column="notice_id"/>
+        <result property="date" column="date"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+    </resultMap>
+    <select id="selectNotice"  resultMap="noticemap">
+        select * from notice
+    </select>
+
+    <resultMap id="noticemap2" type="notice">
+        <id property="noticeId" column="notice_id"/>
+        <result property="date" column="date"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+    </resultMap>
+    <select id="selectNoticeContent" parameterType="java.lang.Integer" resultMap="noticemap2">
+        select * from notice where notice_id = #{id}
+    </select>
+
+    <update id="updatePassword" >
+        update staff_work set password = #{password} where work_id = #{workId}
+    </update>
+</mapper>

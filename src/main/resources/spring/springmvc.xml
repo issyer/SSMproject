@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:bean="http://www.springframework.org/schema/p"
+       xmlns:beans="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <import resource="applicationContext.xml"/>
+    <context:component-scan base-package="controller,service,dao,pojo"/>
+    <bean id = "viewResolver" class ="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/"/>
+       <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <!-- 配置Token拦截器，防止用户重复提交数据 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/deskchange.do"/>
+            <bean class="interceptor.TokenInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+</beans>
