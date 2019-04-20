@@ -60,6 +60,7 @@ public class LoginCheck implements DatabaseOperate{
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
         UserMapper userMapper = applicationContext.getBean(UserMapper.class);
         passwordResult=userMapper.loginCheckByEmail(account);
+        System.out.println("操作了数据库");
         if (password != null && getMD5String(password).equals(passwordResult)) {
             return true;
         }

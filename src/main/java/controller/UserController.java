@@ -172,4 +172,25 @@ public class UserController {
         }
         return modelAndView;
     }
+    @RequestMapping("/showfiles")
+    public ModelAndView shoeFiles(){
+        ModelAndView modelAndView = new ModelAndView();
+        int resultCode = 0 ;
+        flag="showfiles";
+        modelAndView.addObject("flag",flag);
+        modelAndView.addObject("noticelist",notice);
+        modelAndView.addObject("appealList",appeals);
+        modelAndView.addObject("appealList2",appeals2);
+        modelAndView.addObject("resignlist",resigns);
+        modelAndView.addObject("resignlist2",resigns2);
+        modelAndView.addObject("deskChangelist2",deskChange3);
+        modelAndView.addObject("deskChangelist",deskChange2);
+        modelAndView.addObject("staffwork",staffWork);
+        if(resultCode!=0){
+            modelAndView.setViewName("main");
+        }else {
+            modelAndView.setViewName("main");
+        }
+        return modelAndView;
+    }
 }

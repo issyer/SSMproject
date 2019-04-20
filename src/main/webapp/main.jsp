@@ -14,8 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery.min.js"></script>
+    <script type="text/javascript"  src="js/myjs.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        function showfiles() {
+            flag = 'showfiles'
+            window.location.href = "showfiles.do";
+        };
+    </script>
     <style>
         a:link {color:#000000;text-decoration:none;}      /* 未访问链接*/
         a:visited {color:#000000;text-decoration:none;}  /* 已访问链接 */
@@ -34,15 +41,16 @@
     <h6 style="margin-left: 11%;">工号：${staffwork.workId}</h6>
     <h6 style="margin-left: 11%;">岗位：${staffwork.job}</h6>
     <h6 style="margin-left: 11%;">部门：${staffwork.department}</h6>
-    <h6 style="margin-left: 11%;">您在同花顺已工作${staffwork.entryTime}</h6>
-    <h6 style="margin-left: 11%;">感谢您在同花顺的辛勤付出</h6>
+    <h6 style="margin-left: 11%;">您在公司已工作${staffwork.entryTime}</h6>
+    <h6 style="margin-left: 11%;">感谢您在公司的辛勤付出</h6>
 </div>
 <div class="container" style="border:2px solid #cc0000;width:74%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.95)">
-    <div style="width: 94%;height: 70%;margin-left: 3%;margin-right: 3%;">
+    <div style="width: 94%;height: 70%;margin-left: 2%;margin-right: 3%;">
         <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
         <hr style="background-color: #818182;"/>
+        <div id = "changebackground" style="border:1px solid #000000; width: 70%;height: 90%;word-wrap: break-word;word-break: normal; " class="display">
         <c:if test="${flag=='showtitle'}">
-        <div style="width: 30%;height: 70%;float: left">
+        <div style="margin-top:3%;float: left">
             <ul>
                 <c:forEach var="notice" items="${noticelist}">
                     <li><a href="shownotice.do?id=${notice.noticeId}">${notice.title}</a></li>
@@ -50,7 +58,7 @@
             </ul>
 
         </div>
-        <div style="width: 30%;height: 70%;float: left;">
+        <div style="margin-top:3%;float: left;">
             <ul style="list-style: none;">
                 <c:forEach var="notice" items="${noticelist}">
                     <li>${notice.date}</li>
@@ -60,16 +68,22 @@
         </div>
         </c:if>
         <c:if test="${flag=='showcontent'}">
-        <div style="border:1px solid #000000; width: 70%;height: 70%;word-wrap: break-word;word-break: normal; ">
+        <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
             <h5 style="text-align: center">${notice.title}</h5>
             <pre style="margin-left: 10%">
-    ${notice.content}
+               ${notice.content}
             </pre>
             <p style="margin-left: 80%;">${notice.date}</p>
         </div>
         </c:if>
+            <c:if test="${flag=='showfiles'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+
+                </div>
+            </c:if>
+        </div>
     </div>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">常用</br>文件</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showfiles()">常用</br>文件</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">办事</br>流程</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal5">修改</br>密码</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">请假</br>流程</button>
@@ -79,6 +93,8 @@
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal3">审批</br>系统</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">实习</br>模块</button>
 </div>
+
+
 
 <!-- 修改密码模态框 -->
 <div class="modal fade" id="myModal5">
@@ -443,4 +459,9 @@
     </div>
 </div>
 </body>
+<script>
+
+
+
+</script>
 </html>
