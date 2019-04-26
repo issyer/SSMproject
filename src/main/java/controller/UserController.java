@@ -12,13 +12,13 @@ import pojo.*;
 import service.UserService;
 
 import javax.validation.Valid;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 @Controller
 @Component
 public class UserController {
+
+
     @Autowired
     private UserService userService = null;
     @Autowired
@@ -175,22 +175,7 @@ public class UserController {
     @RequestMapping("/showfiles")
     public ModelAndView shoeFiles(){
         ModelAndView modelAndView = new ModelAndView();
-        int resultCode = 0 ;
-        flag="showfiles";
-        modelAndView.addObject("flag",flag);
-        modelAndView.addObject("noticelist",notice);
-        modelAndView.addObject("appealList",appeals);
-        modelAndView.addObject("appealList2",appeals2);
-        modelAndView.addObject("resignlist",resigns);
-        modelAndView.addObject("resignlist2",resigns2);
-        modelAndView.addObject("deskChangelist2",deskChange3);
-        modelAndView.addObject("deskChangelist",deskChange2);
-        modelAndView.addObject("staffwork",staffWork);
-        if(resultCode!=0){
-            modelAndView.setViewName("main");
-        }else {
-            modelAndView.setViewName("main");
-        }
+        modelAndView.setViewName("redirect:http://localhost:8888");
         return modelAndView;
     }
 }
