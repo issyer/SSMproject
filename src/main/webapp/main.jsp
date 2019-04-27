@@ -30,10 +30,10 @@
         a:active {color:#FF00FF;text-decoration:none;}  /* 鼠标点击时 */
     </style>
 </head>
-<body style="background:url(Image/microsoft.jpg);
+<body style="background:url(Image/champion.jpg);
     background-size:100% ,100%;
     background-repeat:no-repeat;">
-<div style="border:2px solid #cc0000;width:17%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.95)">
+<div style="border:2px solid #cc0000;width:17%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.9)">
     <div style="width:70%;height:37%;margin-left: 15%">
         <img src="Image/login.png" style="width: 100%;height: 100%">
     </div>
@@ -44,7 +44,7 @@
     <h6 style="margin-left: 11%;">您在公司已工作${staffwork.entryTime}</h6>
     <h6 style="margin-left: 11%;">感谢您在公司的辛勤付出</h6>
 </div>
-<div class="container" style="border:2px solid #cc0000;width:74%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.95)">
+<div class="container" style="border:2px solid #cc0000;width:74%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.85)">
     <div style="width: 94%;height: 70%;margin-left: 2%;margin-right: 3%;">
         <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
         <hr style="background-color: #818182;"/>
