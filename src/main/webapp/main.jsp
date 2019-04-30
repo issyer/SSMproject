@@ -13,22 +13,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript"  src="js/myjs.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-        function showfiles() {
-            flag = 'showfiles'
-            window.open('showfiles.do','_blank');
-        };
-    </script>
-    <style>
-        a:link {color:#000000;text-decoration:none;}      /* 未访问链接*/
-        a:visited {color:#000000;text-decoration:none;}  /* 已访问链接 */
-        a:hover {color:#FF00FF;text-decoration:none;}  /* 鼠标移动到链接上 */
-        a:active {color:#FF00FF;text-decoration:none;}  /* 鼠标点击时 */
-    </style>
 </head>
 <body style="background:url(Image/champion.jpg);
     background-size:100% ,100%;
@@ -48,37 +37,170 @@
     <div style="width: 94%;height: 70%;margin-left: 2%;margin-right: 3%;">
         <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
         <hr style="background-color: #818182;"/>
-        <div id = "changebackground" style="border:1px solid #000000; width: 70%;height: 90%;word-wrap: break-word;word-break: normal; " class="display">
-        <c:if test="${flag=='showtitle'}">
-        <div style="margin-top:3%;float: left">
-            <ul>
-                <c:forEach var="notice" items="${noticelist}">
-                    <li><a href="shownotice.do?id=${notice.noticeId}">${notice.title}</a></li>
-                </c:forEach>
-            </ul>
+        <div id="changebackground"
+             style="border:1px solid #000000; width: 70%;height: 90%;word-wrap: break-word;word-break: normal; "
+             class="display">
+            <c:if test="${flag=='showtitle'}">
+                <div style="margin-top:3%;float: left">
+                    <ul>
+                        <c:forEach var="notice" items="${noticelist}">
+                            <li><a href="shownotice.do?id=${notice.noticeId}">${notice.title}</a></li>
+                        </c:forEach>
+                    </ul>
 
-        </div>
-        <div style="margin-top:3%;float: left;">
-            <ul style="list-style: none;">
-                <c:forEach var="notice" items="${noticelist}">
-                    <li>${notice.date}</li>
-                </c:forEach>
-            </ul>
+                </div>
+                <div style="margin-top:3%;float: left;">
+                    <ul style="list-style: none;">
+                        <c:forEach var="notice" items="${noticelist}">
+                            <li>${notice.date}</li>
+                        </c:forEach>
+                    </ul>
 
-        </div>
-        </c:if>
-        <c:if test="${flag=='showcontent'}">
-        <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
-            <h5 style="text-align: center">${notice.title}</h5>
-            <pre style="margin-left: 10%">
-               ${notice.content}
-            </pre>
-            <p style="margin-left: 80%;">${notice.date}</p>
-        </div>
-        </c:if>
-            <c:if test="${flag=='showfiles'}">
+                </div>
+            </c:if>
+            <c:if test="${flag=='showcontent'}">
                 <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <h5 style="text-align: center">${notice.title}</h5>
+                    <pre style="margin-left: 10%">
+                            ${notice.content}
+                    </pre>
+                    <p style="margin-left: 80%;">${notice.date}</p>
+                </div>
+            </c:if>
+            <c:if test="${flag=='qingjia'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
+                        <tr>
+                            <th>预计离职日期</th>
+                            <td><input type="text" name="leaveDate" style="width: 100%"></td>
+                        </tr>
+                        <tr>
+                            <th>离职原因</th>
+                            <td><textarea rows="5" style="width: 100%" placeholder="不少于10个字" name="reason"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系方式</th>
+                            <td><input type="text" style="width: 100%" name="tel" placeholder="必须为手机号"></td>
+                        </tr>
+                        <tr>
+                            <th>离职证明邮寄地址</th>
+                            <td><input type="text" style="width: 100%" name="postAddress" placeholder="省、市、区详细地址"></td>
+                        </tr>
+                    </table>
+                </div>
+            </c:if>
+            <c:if test="${flag=='resign'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <form action="resign.do" method="post">
+                        <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
+                            <tr>
+                                <th>预计离职日期</th>
+                                <td><input type="text" name="leaveDate" style="width: 100%"></td>
+                            </tr>
+                            <tr>
+                                <th>离职原因</th>
+                                <td><textarea rows="5" style="width: 100%" placeholder="不少于10个字" name="reason"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>联系方式</th>
+                                <td><input type="text" style="width: 100%" name="tel" placeholder="必须为手机号"></td>
+                            </tr>
+                            <tr>
+                                <th>离职证明邮寄地址</th>
+                                <td><input type="text" style="width: 100%" name="postAddress" placeholder="省、市、区详细地址"></td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" value="提交申请" name="submit" class="css3button" >提交申请</button></td>
+                            </tr>
+                        </table>
 
+                    </form>
+                </div>
+            </c:if>
+            <c:if test="${flag=='deskchange'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <form action="deskchange.do" method="post">
+                        <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
+                            <tr>
+                                <th>员工姓名</th>
+                                <td><input type="text" name="staffName" style="width: 100%" value=${staffwork.name}>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>您当前绑定的工位</th>
+                                <td><input type="text" name="deskNow" style="width: 100%" value=${staffwork.workDesk}>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>工位信息</th>
+                                <td><input type="text" style="width: 100%" name="deskWant"></td>
+                            </tr>
+                            <tr>
+                                <th>外网配置</th>
+                                <td><input type="radio" name="netOutside" value="物理机">物理机<input type="radio"
+                                                                                                name="netOutside"
+                                                                                                value="虚拟机">虚拟机<input
+                                        type="radio" name="netOutside" value="不使用外网">不使用外网
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>内网配置</th>
+                                <td><input type="radio" name="netInside" value="物理机">物理机<input type="radio"
+                                                                                               name="netInside"
+                                                                                               value="虚拟机">虚拟机<input
+                                        type="radio" name="netInside" value="不使用外网">不使用外网
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" value="提交申请" name="submit" class="css3button">提交申请</button></td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+            </c:if>
+            <c:if test="${flag=='appeal'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <form action="appeal.do" method="post">
+                        <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
+                            <tr>
+                                <th>申诉日期</th>
+                                <td><input type="text" name="notAgreeDate" style="width: 100%"></td>
+                            </tr>
+                            <tr>
+                                <th>申诉原因</th>
+                                <td><input type="text" name="reason" style="width: 100%"></td>
+                            </tr>
+                            <tr>
+                                <th>是否有证明</th>
+                                <td><input type="radio" name="zhengming" value="是">是<input type="radio" name="zhengming"
+                                                                                           value="否">否
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>证明类型</th>
+                                <td>
+                                    <select name="type" style="width: 100%">
+                                        <option value="邮件记录">邮件记录</option>
+                                        <option value="开关机记录">开关机记录</option>
+                                        <option value="工作交流记录">工作交流记录</option>
+                                        <option value="职能上级证明">职能上级证明</option>
+                                        <option value="会议室等办公用品租借记录">会议室等办公用品租借记录</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>备注</th>
+                                <td><textarea name="others" rows="5" style="width: 100%"
+                                              placeholder="不少于10个字"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" name="submit" value="提交申请" class="css3button">提交申请</button></td>
+                            </tr>
+                        </table>
+
+                    </form>
                 </div>
             </c:if>
         </div>
@@ -86,14 +208,13 @@
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showfiles()">常用</br>文件</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">办事</br>流程</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal5">修改</br>密码</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">请假</br>流程</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal4">考勤</br>申诉</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal1">离职</br>办理</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal2">工位</br>调整</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="applyleave()">请假</br>流程</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="appeal()">考勤</br>申诉</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="resign()">离职</br>办理</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="changedesk()">工位</br>调整</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal3">审批</br>系统</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">实习</br>模块</button>
 </div>
-
 
 
 <!-- 修改密码模态框 -->
@@ -457,9 +578,4 @@
     </div>
 </div>
 </body>
-<script>
-
-
-
-</script>
 </html>

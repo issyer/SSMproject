@@ -135,7 +135,6 @@ public class UserController {
 
     @RequestMapping("/passwordchange")
     public ModelAndView changePassword(@RequestParam("passwordNow") String passwordOld, @RequestParam("passwordNew")String passwordNew){
-        modelAndView = new ModelAndView();
         int resultCode = userService.updateStaffWorkPassword(staffWork.getWorkId(),passwordNew);
         if(resultCode!=0){
             modelAndView.setViewName("main");
@@ -148,6 +147,20 @@ public class UserController {
     public ModelAndView shoeFiles(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:http://localhost:8888");
+        return modelAndView;
+    }
+
+    @RequestMapping("/leave")
+    public ModelAndView applyLeave(){
+        flag = "qingjia";
+        modelAndView.addObject("flag",flag);
+        return modelAndView;
+    }
+
+    @RequestMapping("/change")
+    public ModelAndView changebackground(String change){
+        flag = change;
+        modelAndView.addObject("flag",flag);
         return modelAndView;
     }
 }

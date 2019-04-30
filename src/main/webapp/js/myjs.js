@@ -152,3 +152,27 @@ function change(phone){
          this.className = this.className.replace('hilite','');
      }
  }
+
+
+
+
+function showfiles() {
+    flag = 'showfiles'
+    window.open('showfiles.do','_blank');
+};
+
+function applyleave() {
+    window.location.href="change.do?change=qingjia";
+};
+
+function resign() {
+    window.location.href="change.do?change=resign";
+};
+
+function changedesk() {
+    window.location.href="change.do?change=deskchange";
+};
+
+function appeal() {
+    window.location.href="change.do?change=appeal";
+};
