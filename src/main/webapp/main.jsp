@@ -20,7 +20,7 @@
     <script>
         function showfiles() {
             flag = 'showfiles'
-            window.location.href = "showfiles.do";
+            window.open('showfiles.do','_blank');
         };
     </script>
     <style>
@@ -242,11 +242,9 @@
                         <div class="card">
                             <div class="card-header">
                                 工位调整审批
-
                                 <a class="card-link" data-toggle="collapse" href="#collapseOne" style="margin-left: 80.5%">
                                     展开
                                 </a>
-
                             </div>
                             <div id="collapseOne" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
