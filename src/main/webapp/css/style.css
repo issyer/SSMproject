@@ -1,0 +1,42 @@
+/**
+按钮样式
+ */
+button.css3button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #123d54;
+    padding: 10px 20px;
+    background: -moz-linear-gradient(
+            top,
+            #ffffff 0%,
+            #588fad);
+    background: -webkit-gradient(
+            linear, left top, left bottom,
+            from(#ffffff),
+            to(#588fad));
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #000000;
+    -moz-box-shadow:
+            0px 1px 3px rgba(000,000,000,0.5),
+            inset 0px 0px 1px rgba(255,255,255,1);
+    -webkit-box-shadow:
+            0px 1px 3px rgba(000,000,000,0.5),
+            inset 0px 0px 1px rgba(255,255,255,1);
+    box-shadow:
+            0px 1px 3px rgba(000,000,000,0.5),
+            inset 0px 0px 1px rgba(255,255,255,1);
+    text-shadow:
+            0px -1px 0px rgba(000,000,000,0.7),
+            0px 1px 0px rgba(255,255,255,0.3);
+}
+
+
+/**
+链接样式
+ */
+a:link {color:#000000;text-decoration:none;}      /* 未访问链接*/
+a:visited {color:#000000;text-decoration:none;}  /* 已访问链接 */
+a:hover {color:#FF00FF;text-decoration:none;}  /* 鼠标移动到链接上 */
+a:active {color:#FF00FF;text-decoration:none;}  /* 鼠标点击时 */
