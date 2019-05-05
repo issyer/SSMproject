@@ -168,6 +168,9 @@ function applyleave() {
 function resign() {
     window.location.href="change.do?change=resign";
 };
+function shownotices() {
+    window.location.href="change.do?change=showtitle";
+};
 
 function changedesk() {
     window.location.href="change.do?change=deskchange";
@@ -175,4 +178,8 @@ function changedesk() {
 
 function appeal() {
     window.location.href="change.do?change=appeal";
+};
+
+function changepassword() {
+    window.location.href="change.do?change=passwordchange";
 };

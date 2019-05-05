@@ -150,10 +150,16 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping("/leave")
-    public ModelAndView applyLeave(){
-        flag = "qingjia";
-        modelAndView.addObject("flag",flag);
+    @RequestMapping("/qingjia")
+    public ModelAndView offworkapply(@Valid OffWork offWork){
+        offWork.setWorkId(staffWork.getWorkId());
+        offWork.setName(staffWork.getName());
+        int resultCode = 0;
+        if(resultCode!=0){
+            modelAndView.setViewName("main");
+        }else {
+            modelAndView.setViewName("main");
+        }
         return modelAndView;
     }
 
