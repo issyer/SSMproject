@@ -41,6 +41,12 @@
         <c:if test="${flag=='showcontent'}">
             <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
         </c:if>
+        <c:if test="${flag=='showprocesstitle'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">办事流程</h4>
+        </c:if>
+        <c:if test="${flag=='showprocesscontent'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">办事流程</h4>
+        </c:if>
         <c:if test="${flag=='qingjia'}">
             <h4 style="margin-left: 3%;margin-top: 3%;">请假申请</h4>
         </c:if>
@@ -55,6 +61,9 @@
         </c:if>
         <c:if test="${flag=='passwordchange'}">
             <h4 style="margin-left: 3%;margin-top: 3%;">员工信息修改</h4>
+        </c:if>
+        <c:if test="${flag=='shixiapply'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">实习模块</h4>
         </c:if>
         <hr style="background-color: #818182;"/>
         <div id="changebackground"
@@ -85,6 +94,33 @@
                             ${notice.content}
                     </pre>
                     <p style="margin-left: 80%;">${notice.date}</p>
+                </div>
+            </c:if>
+            <c:if test="${flag=='showprocesstitle'}">
+                <div style="margin-top:3%;float: left">
+                    <ul>
+                        <c:forEach var="process" items="${processlist}">
+                            <li><a href="showprocess.do?id=${process.processId}">${process.title}</a></li>
+                        </c:forEach>
+                    </ul>
+
+                </div>
+                <div style="margin-top:3%;float: left;">
+                    <ul style="list-style: none;">
+                        <c:forEach var="process" items="${processlist}">
+                            <li>${process.date}</li>
+                        </c:forEach>
+                    </ul>
+
+                </div>
+            </c:if>
+            <c:if test="${flag=='showprocesscontent'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <h5 style="text-align: center">${process.title}</h5>
+                    <pre style="margin-left: 10%">
+                            ${process.content}
+                    </pre>
+                    <p style="margin-left: 80%;">${process.date}</p>
                 </div>
             </c:if>
             <c:if test="${flag=='qingjia'}">
@@ -268,10 +304,34 @@
                     </form>
                 </div>
             </c:if>
+            <c:if test="${flag=='shixiapply'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <form action="shixi.do" method="post">
+                        <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
+                            <tr>
+                                <th>预计返校日期</th>
+                                <td><input type="text" name="leaveDate" style="width: 100%"></td>
+                            </tr>
+                            <tr>
+                                <th>返回工作日期</th>
+                                <td><input type="text" name="backDate" style="width: 100%"></td>
+                            </tr>
+                            <tr>
+                                <th>联系方式</th>
+                                <td><input type="text" style="width: 100%" name="tel" placeholder="必须为手机号"></td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" value="提交申请" name="submit" class="css3button" >提交申请</button></td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+            </c:if>
         </div>
     </div>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showfiles()">常用</br>文件</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">办事</br>流程</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showprocess()">办事</br>流程</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="shownotices()">公告</br>查看</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;"  onclick="changepassword()">修改</br>密码</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="applyleave()">请假</br>流程</button>
@@ -279,7 +339,7 @@
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="resign()">离职</br>办理</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="changedesk()">工位</br>调整</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal3">审批</br>系统</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;">实习</br>模块</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="shixi()">实习</br>模块</button>
 </div>
 
 <!-- 审批系统模态框 -->

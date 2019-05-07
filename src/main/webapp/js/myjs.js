@@ -183,3 +183,11 @@ function appeal() {
 function changepassword() {
     window.location.href="change.do?change=passwordchange";
 };
+
+function shixi() {
+    window.location.href="change.do?change=shixiapply";
+};
+
+function showprocess() {
+    window.location.href="change.do?change=showprocesstitle";
+};

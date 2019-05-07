@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     private LoginCheck loginCheck = null;
     private StaffWork staffWork ;
+    private StaffWork admin ;
     private List<DeskChange> deskChange;
     private List<DeskChange> deskChange2;
     private List<Resign> resigns;
@@ -39,6 +40,19 @@ public class UserController {
     @RequestMapping("/login")
     public ModelAndView login(@RequestParam("email") String email,@RequestParam("password") String password){
         modelAndView = new ModelAndView();
+
+        if(email.equals("admin")&&password.equals("admin")){
+            ModelAndView adminView = new ModelAndView();
+            admin = new StaffWork();
+            admin.setName("管理员");
+            admin.setWorkId("0001");
+            admin.setJob("系统管理员");
+            admin.setDepartment("运营部");
+            adminView.addObject("admin",admin);
+            adminView.setViewName("admin");
+            return adminView;
+        }
+
         if(loginCheck.loginForRegist(email,password)){
             staffPersonal.setIdcardNum(email);
             modelAndView.setViewName("register");
@@ -132,7 +146,15 @@ public class UserController {
         modelAndView.setViewName("main");
         return modelAndView;
     }
-
+    @RequestMapping("/showprocess")
+    public ModelAndView showProcessContent(int id){
+        flag = "showprocesscontent";
+//        Notice content = userService.getNoticeContent(id);
+//        modelAndView.addObject("notice",content);
+        modelAndView.addObject("flag",flag);
+        modelAndView.setViewName("main");
+        return modelAndView;
+    }
     @RequestMapping("/passwordchange")
     public ModelAndView changePassword(@RequestParam("passwordNow") String passwordOld, @RequestParam("passwordNew")String passwordNew){
         int resultCode = userService.updateStaffWorkPassword(staffWork.getWorkId(),passwordNew);
