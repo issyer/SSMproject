@@ -35,78 +35,59 @@
 </div>
 <div class="container" style="border:2px solid #cc0000;width:74%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.85)">
     <div style="width: 94%;height: 70%;margin-left: 2%;margin-right: 3%;">
-        <c:if test="${flag=='showtitle'}">
-            <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
+        <c:if test="${flag=='powermanage'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">权限管理</h4>
         </c:if>
-        <c:if test="${flag=='showcontent'}">
-            <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
+        <c:if test="${flag=='noticemanage'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">通知管理</h4>
         </c:if>
-        <c:if test="${flag=='showprocesstitle'}">
-            <h4 style="margin-left: 3%;margin-top: 3%;">办事流程</h4>
+        <c:if test="${flag=='processmanage'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">流程管理</h4>
         </c:if>
         <hr style="background-color: #818182;"/>
         <div id="changebackground"
+
              style="border:1px solid #000000; width: 70%;height: 90%;word-wrap: break-word;word-break: normal; "
              class="display">
-            <c:if test="${flag=='showtitle'}">
-                <div style="margin-top:3%;float: left">
-                    <ul>
-                        <c:forEach var="notice" items="${noticelist}">
-                            <li><a href="shownotice.do?id=${notice.noticeId}">${notice.title}</a></li>
-                        </c:forEach>
-                    </ul>
-
-                </div>
-                <div style="margin-top:3%;float: left;">
-                    <ul style="list-style: none;">
-                        <c:forEach var="notice" items="${noticelist}">
-                            <li>${notice.date}</li>
-                        </c:forEach>
-                    </ul>
-
-                </div>
-            </c:if>
-            <c:if test="${flag=='showcontent'}">
+            <c:if test="${flag=='powermanage'}">
                 <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
-                    <h5 style="text-align: center">${notice.title}</h5>
-                    <pre style="margin-left: 10%">
-                            ${notice.content}
-                    </pre>
-                    <p style="margin-left: 80%;">${notice.date}</p>
+                    <form action="resign.do" method="post">
+                        <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
+                            <tr>
+                                <th>预计离职日期</th>
+                                <td><input type="text" name="leaveDate" style="width: 100%"></td>
+                            </tr>
+                            <tr>
+                                <th>离职原因</th>
+                                <td><textarea rows="5" style="width: 100%" placeholder="不少于10个字" name="reason"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>联系方式</th>
+                                <td><input type="text" style="width: 100%" name="tel" placeholder="必须为手机号"></td>
+                            </tr>
+                            <tr>
+                                <th>离职证明邮寄地址</th>
+                                <td><input type="text" style="width: 100%" name="postAddress" placeholder="省、市、区详细地址"></td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" value="提交申请" name="submit" class="css3button" >提交申请</button></td>
+                            </tr>
+                        </table>
+
+                    </form>
                 </div>
             </c:if>
-            <c:if test="${flag=='showprocesstitle'}">
-                <div style="margin-top:3%;float: left">
-                    <ul>
-                        <c:forEach var="process" items="${processlist}">
-                            <li><a href="showprocess.do?id=${process.processId}">${process.title}</a></li>
-                        </c:forEach>
-                    </ul>
+            <c:if test="${flag=='noticemanage'}">
 
-                </div>
-                <div style="margin-top:3%;float: left;">
-                    <ul style="list-style: none;">
-                        <c:forEach var="process" items="${processlist}">
-                            <li>${process.date}</li>
-                        </c:forEach>
-                    </ul>
-
-                </div>
             </c:if>
-            <c:if test="${flag=='showprocesscontent'}">
-                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
-                    <h5 style="text-align: center">${process.title}</h5>
-                    <pre style="margin-left: 10%">
-                            ${process.content}
-                    </pre>
-                    <p style="margin-left: 80%;">${process.date}</p>
-                </div>
+            <c:if test="${flag=='processmanage'}">
+
             </c:if>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showfiles()">权限</br>分配</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showprocess()">通知</br>发布</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="shownotices()">流程</br>发布</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showpowermanage()">权限</br>分配</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="shownoticemanage()">通知</br>发布</button>
+    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showprocessmanage()">流程</br>发布</button>
 </div>
 
 </body>

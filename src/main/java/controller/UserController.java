@@ -36,18 +36,20 @@ public class UserController {
     private StaffPersonal staffPersonal = new StaffPersonal();
 
     private ModelAndView modelAndView;
-
+    private ModelAndView adminView;
     @RequestMapping("/login")
     public ModelAndView login(@RequestParam("email") String email,@RequestParam("password") String password){
         modelAndView = new ModelAndView();
 
         if(email.equals("admin")&&password.equals("admin")){
-            ModelAndView adminView = new ModelAndView();
+            adminView = new ModelAndView();
             admin = new StaffWork();
             admin.setName("管理员");
             admin.setWorkId("0001");
             admin.setJob("系统管理员");
             admin.setDepartment("运营部");
+            flag = "powermanage";
+            adminView.addObject("flag",flag);
             adminView.addObject("admin",admin);
             adminView.setViewName("admin");
             return adminView;
@@ -190,5 +192,12 @@ public class UserController {
         flag = change;
         modelAndView.addObject("flag",flag);
         return modelAndView;
+    }
+
+    @RequestMapping("/adminchange")
+    public ModelAndView changebackgroundForAdmin(String change){
+        flag = change;
+        adminView.addObject("flag",flag);
+        return adminView;
     }
 }

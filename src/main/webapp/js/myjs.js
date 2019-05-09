@@ -191,3 +191,15 @@ function shixi() {
 function showprocess() {
     window.location.href="change.do?change=showprocesstitle";
 };
+
+function showpowermanage() {
+    window.location.href="adminchange.do?change=powermanage";
+};
+
+function shownoticemanage() {
+    window.location.href="adminchange.do?change=noticemanage";
+};
+
+function showprocessmanage() {
+    window.location.href="adminchange.do?change=processmanage";
+};
