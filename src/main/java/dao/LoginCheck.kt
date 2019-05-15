@@ -5,7 +5,6 @@ import org.apache.ibatis.io.Resources
 import org.apache.ibatis.session.SqlSession
 import org.apache.ibatis.session.SqlSessionFactory
 import org.apache.ibatis.session.SqlSessionFactoryBuilder
-import org.springframework.context.ApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import org.springframework.stereotype.Component
 import pojo.DeskChange
@@ -23,6 +22,7 @@ import java.security.MessageDigest
  */
 @Component
 class LoginCheck : DatabaseOperate {
+
 
     override fun loginForRegist(account: String, password: String): Boolean {
         var sqlSessionFactory: SqlSessionFactory? = null
@@ -52,7 +52,7 @@ class LoginCheck : DatabaseOperate {
         return false
     }
 
-    override fun loginForMain(account: String, password: String?): Boolean {
+    override fun loginForMain(account: String, password: String): Boolean {
         var passwordResult: String? = null
         val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
         val userMapper = applicationContext.getBean(UserMapper::class.java)

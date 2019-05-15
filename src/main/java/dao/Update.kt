@@ -1,14 +1,11 @@
 package dao
 
 import mapper.UserMapper
-import org.springframework.context.ApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext
 import org.springframework.stereotype.Component
 import pojo.DeskChange
 import pojo.StaffPersonal
 import pojo.StaffWork
-
-import java.util.HashMap
 
 /**
  * @author Kayll

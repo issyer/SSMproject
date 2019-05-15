@@ -9,9 +9,9 @@ import pojo.StaffWork
  * @date 2018/11/3 18:42
  */
 interface DatabaseOperate {
-    fun loginForRegist(account: String, password: String): Boolean
-    fun loginForMain(account: String, password: String): Boolean
-    fun selectStaffWork(email: String): StaffWork
-    fun updateStaffPersonal(staffPersonal: StaffPersonal): Int
-    fun insertDeskChange(deskChange: DeskChange): Int
+    public fun loginForRegist(account: String, password: String): Boolean
+    public fun loginForMain(account: String, password: String): Boolean
+    public fun selectStaffWork(email: String): StaffWork?
+    public fun updateStaffPersonal(staffPersonal: StaffPersonal): Int
+    public fun insertDeskChange(deskChange: DeskChange): Int
 }

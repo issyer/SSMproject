@@ -1,12 +1,11 @@
 package pojo;
 
 import lombok.Data;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Kayll
- * @date 2018/10/29 15:41
+ * @author sunwanghe
+ * @date 2019/5/15 18:17
  */
 @Component
 @Data
@@ -21,6 +20,7 @@ public class StaffWork {
     private String pay;
     private String workEmail;
     private String password;
-    private boolean jobHead;
-    private boolean departmentHead;
+    private boolean isJobHead;
+    private boolean isDepartmentHead;
+
 }

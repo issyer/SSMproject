@@ -33,6 +33,7 @@ public class UserService implements UserServiceInterface{
     public  StaffWork getUser(String email){
         String time = null;
         staffWork = select.selectStaffWork(email);
+        System.out.println(staffWork.getName());
         time = staffWork.getEntryTime();
         SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd");
         Date begin= new Date();
