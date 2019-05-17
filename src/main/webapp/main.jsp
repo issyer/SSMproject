@@ -14,10 +14,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="less/datetimepicker.less">
     <script src="js/jquery.min.js"></script>
-    <script type="text/javascript"  src="js/myjs.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/myjs.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+
+
 </head>
 <body style="background:url(Image/champion.jpg);
     background-size:100% ,100%;
@@ -147,7 +153,13 @@
                             </tr>
                             <tr>
                                 <th>开始时间</th>
-                                <td><input type="text" name="startdate" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" value="请选择时间"  readonly class="form_datetime" style="width: 100%"></td>
+                                <script>
+                                    $(".form_datetime").datetimepicker({
+                                        format: 'yyyy-mm-dd',
+                                        minView: "month",
+                                    });
+                                </script>
                             </tr>
                             <tr>
                                 <th>结束时间</th>
