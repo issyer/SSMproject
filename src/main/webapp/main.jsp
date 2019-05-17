@@ -153,17 +153,27 @@
                             </tr>
                             <tr>
                                 <th>开始时间</th>
-                                <td><input type="text" name="startdate" value="请选择时间"  readonly class="form_datetime" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" placeholder="请选择日期"  readonly class="form_datetime" style="width: 100%"></td>
                                 <script>
                                     $(".form_datetime").datetimepicker({
                                         format: 'yyyy-mm-dd',
                                         minView: "month",
+                                        todayBtn: "linked",
+                                        autoclose: "true"
                                     });
                                 </script>
                             </tr>
                             <tr>
                                 <th>结束时间</th>
-                                <td><input type="text" name="enddate" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" placeholder="请选择日期"  readonly class="form_datetime" style="width: 100%"></td>
+                                <script>
+                                    $(".form_datetime").datetimepicker({
+                                        format: 'yyyy-mm-dd',
+                                        minView: "month",
+                                        todayBtn: "linked",
+                                        autoclose: "true"
+                                    });
+                                </script>
                             </tr>
                             <tr>
                                 <th>请假时长</th>
@@ -188,7 +198,15 @@
                         <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
                             <tr>
                                 <th>预计离职日期</th>
-                                <td><input type="text" name="leaveDate" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" placeholder="请选择离职日期"  readonly class="form_datetime" style="width: 100%"></td>
+                                <script>
+                                    $(".form_datetime").datetimepicker({
+                                        format: 'yyyy-mm-dd',
+                                        minView: "month",
+                                        todayBtn: "linked",
+                                        autoclose: "true"
+                                    });
+                                </script>
                             </tr>
                             <tr>
                                 <th>离职原因</th>
@@ -258,7 +276,15 @@
                         <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
                             <tr>
                                 <th>申诉日期</th>
-                                <td><input type="text" name="notAgreeDate" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" placeholder="请选择时间"  readonly class="form_datetime" style="width: 100%"></td>
+                                <script>
+                                    $(".form_datetime").datetimepicker({
+                                        format: 'yyyy-mm-dd',
+                                        minView: "month",
+                                        todayBtn: "linked",
+                                        autoclose: "true"
+                                    });
+                                </script>
                             </tr>
                             <tr>
                                 <th>申诉原因</th>
@@ -322,11 +348,27 @@
                         <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
                             <tr>
                                 <th>预计返校日期</th>
-                                <td><input type="text" name="leaveDate" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" placeholder="请选择返校日期"  readonly class="form_datetime" style="width: 100%"></td>
+                                <script>
+                                    $(".form_datetime").datetimepicker({
+                                        format: 'yyyy-mm-dd',
+                                        minView: "month",
+                                        todayBtn: "linked",
+                                        autoclose: "true"
+                                    });
+                                </script>
                             </tr>
                             <tr>
                                 <th>返回工作日期</th>
-                                <td><input type="text" name="backDate" style="width: 100%"></td>
+                                <td><input type="text" name="startdate" placeholder="请选择工作日期"  readonly class="form_datetime" style="width: 100%"></td>
+                                <script>
+                                    $(".form_datetime").datetimepicker({
+                                        format: 'yyyy-mm-dd',
+                                        minView: "month",
+                                        todayBtn: "linked",
+                                        autoclose: "true"
+                                    });
+                                </script>
                             </tr>
                             <tr>
                                 <th>联系方式</th>
