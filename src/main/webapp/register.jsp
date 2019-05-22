@@ -31,11 +31,11 @@
         }
     </style>
 </head>
-<body style="background:url(Image/microsoft.jpg);
+<body style="background:url(Image/champion.jpg);
     background-size:100% ,100%;
     background-repeat:no-repeat;">
 <div style="border:2px solid #cc0000;width:70%;height:90%;margin-left:15%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.95)">
-    <form action="regist.do"method="post">
+    <form action="regist.do" method="post">
     <table >
         <tr>
             <th colspan="4">员工基本信息登记</th>
@@ -45,7 +45,7 @@
             <td><input type="text" name="name"/></td>
             <th rowspan="3">照片</th>
             <td rowspan="3">
-                <%--<input type="file" name="photo" accept="image"/>--%>
+                <input id="selFile" type="file" name="photo" accept="image" />
             </td>
         </tr>
         <tr>

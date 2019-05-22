@@ -13,6 +13,7 @@ public class StaffWork {
     private String workId;
     private String name;
     private String sex;
+    private String photo;
     private String workDesk;
     private String department;
     private String job;
@@ -22,5 +23,6 @@ public class StaffWork {
     private String password;
     private boolean isJobHead;
     private boolean isDepartmentHead;
+    private boolean isHR;
 
 }

@@ -14,28 +14,35 @@ import java.util.Map;
  */
 @Repository
 public interface UserMapper {
-    public Integer loginCheckByIdcardNum(String idcardnum);
+    Integer loginCheckByIdcardNum(String idcardnum);
+    String  loginCheckByEmail(String email);
 
-    public String  loginCheckByEmail(String email);
+    StaffWork selectStaffWork(String email);
+    int insertStaffWork(StaffWork staffWork);
 
-    public StaffWork selectStaffWork(String email);
+    Integer updateStaffPersonal(StaffPersonal staffPersonal);
+    Integer updateStaffPersonalWorkId();
+    List<StaffPersonal> selectStaffPersonal();
 
-    public Integer updateStaffPersonal(StaffPersonal staffPersonal);
+    Integer insertDeskChange(DeskChange deskChange);
+    List<DeskChange> selectDeskChange(String workId);
+    List<DeskChange> selectDeskChange2(String workId);
 
-    public Integer insertDeskChange(DeskChange deskChange);
-    public List<DeskChange> selectDeskChange(String workId);
-    public List<DeskChange> selectDeskChange2(String workId);
+    Integer insertResign(Resign resign);
+    List<Resign> selectResign(String workId);
+    List<Resign> selectResign2(String workId);
 
-    public Integer insertResign(Resign resign);
-    public List<Resign> selectResign(String workId);
-    public List<Resign> selectResign2(String workId);
+    Integer insertAppeal(Appeal appeal);
+    List<Appeal> selectAppeal(String workId);
+    List<Appeal> selectAppeal2(String workId);
 
-    public Integer insertAppeal(Appeal appeal);
-    public List<Appeal> selectAppeal(String workId);
-    public List<Appeal> selectAppeal2(String workId);
+    List<Notice> selectNotice();
+    Notice selectNoticeContent(int id);
 
-    public List<Notice> selectNotice();
-    public Notice selectNoticeContent(int id);
+    Integer updatePassword(@Param("workId") String workId, @Param("password") String password);
 
-    public Integer updatePassword(@Param("workId") String workId, @Param("password") String password);
+    Integer updateDeskChange(@Param("applyresult") String applyresult, @Param("id")int id);
+    Integer updateResign(@Param("applyresult") String applyresult, @Param("workId")String workId);
+    Integer updateWorkday(@Param("applyresult") String applyresult, @Param("id")int id);
+
 }

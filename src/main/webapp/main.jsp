@@ -28,9 +28,9 @@
 <body style="background:url(Image/champion.jpg);
     background-size:100% ,100%;
     background-repeat:no-repeat;">
-<div style="border:2px solid #cc0000;width:17%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.9)">
+<div style="border:1px solid #cc0000;width:17%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.9)">
     <div style="width:70%;height:37%;margin-left: 15%">
-        <img src="Image/login.png" style="width: 100%;height: 100%">
+        <img src="Image/${staffwork.photo}" style="width: 100%;height: 100%">
     </div>
     <h4 style="margin-left: 33%;">${staffwork.name}</h4>
     <h6 style="margin-left: 11%;">工号：${staffwork.workId}</h6>
@@ -39,7 +39,7 @@
     <h6 style="margin-left: 11%;">您在公司已工作${staffwork.entryTime}</h6>
     <h6 style="margin-left: 11%;">感谢您在公司的辛勤付出</h6>
 </div>
-<div class="container" style="border:2px solid #cc0000;width:74%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.85)">
+<div class="container" style="border:1px solid #cc0000;width:74%;height:90%;margin-left:3%;margin-top:3%;float: left;background-color:rgba(255,255,255,0.85)">
     <div style="width: 94%;height: 70%;margin-left: 2%;margin-right: 3%;">
         <c:if test="${flag=='showtitle'}">
             <h4 style="margin-left: 3%;margin-top: 3%;">公告</h4>
@@ -71,6 +71,9 @@
         <c:if test="${flag=='shixiapply'}">
             <h4 style="margin-left: 3%;margin-top: 3%;">实习模块</h4>
         </c:if>
+        <c:if test="${flag=='employeeManage'}">
+            <h4 style="margin-left: 3%;margin-top: 3%;">员工管理</h4>
+        </c:if>
         <hr style="background-color: #818182;"/>
         <div id="changebackground"
              style="border:1px solid #000000; width: 70%;height: 90%;word-wrap: break-word;word-break: normal; "
@@ -96,7 +99,7 @@
             <c:if test="${flag=='showcontent'}">
                 <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
                     <h5 style="text-align: center">${notice.title}</h5>
-                    <pre style="margin-left: 10%">
+                    <pre style="margin-left: 0%">
                             ${notice.content}
                     </pre>
                     <p style="margin-left: 80%;">${notice.date}</p>
@@ -382,6 +385,59 @@
                     </form>
                 </div>
             </c:if>
+            <c:if test="${flag=='employeeManage'}">
+                <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
+                    <form action="registForWork.do" method="post">
+                        <table style="margin-top: 2%; border-collapse: collapse; text-align: center;width: 80%;margin-left: 10%">
+                            <tr>
+                                <th colspan="4" >员工工作信息注册</th>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;width: 20%">工号</th>
+                                <td style=" text-align: center;border: 1px solid black; width: 30%"><input type="text" name="workId" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                                <th rowspan="3" style=" text-align: center;border: 1px solid black;width: 20%">照片</th>
+                                <td rowspan="3" style=" text-align: center;border: 1px solid black;width: 30%">
+                                    <img src="Image/${staffpersonal.photo}" style="width: 65%;height: 22%">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;">姓名</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="name" style=" text-align: center;width: 100%;height: 100%;border: none;" value=${staffpersonal.name}></td>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;">性别</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="sex" style=" text-align: center;width: 100%;height: 100%;border: none;" value=${staffpersonal.sex}></td>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;">入职日期</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="entryTime"  placeholder="格式为：yyyy-mm-dd" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                                <th style=" text-align: center;border: 1px solid black;">联系电话</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="tel" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;">工位</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="workDesk" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                                <th style=" text-align: center;border: 1px solid black;">部门</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="department" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;">职位</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="job" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                                <th style=" text-align: center;border: 1px solid black;">工资</th>
+                                <td style=" text-align: center;border: 1px solid black;"><input type="text" name="pay" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                            </tr>
+                            <tr>
+                                <th style=" text-align: center;border: 1px solid black;">工作邮箱</th>
+                                <td colspan="3" style=" text-align: center;border: 1px solid black;"><input type="text" name="workEmail" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style=" text-align: center;border: 1px solid black;"><input type="reset" name="reset" value="清空信息" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                                <td colspan="2" style=" text-align: center;border: 1px solid black;"><input type="submit" name="submit" value="上传信息" style=" text-align: center;width: 100%;height: 100%;border: none;"/></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </c:if>
         </div>
     </div>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="showfiles()">常用</br>文件</button>
@@ -393,7 +449,13 @@
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="resign()">离职</br>办理</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="changedesk()">工位</br>调整</button>
     <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" data-toggle="modal" data-target="#myModal3">审批</br>系统</button>
-    <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="shixi()">实习</br>模块</button>
+    <c:if test="!${staffwork.jobHead}">
+        <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="shixi()">实习</br>模块</button>
+    </c:if>
+    <c:if test="${staffwork.HR}">
+        <button type="button" class="btn btn-primary" style="background-color: #cc0000; margin-left: 2%;margin-top:5%;float: left;width:70px;height: 70px;" onclick="manage()">员工</br>管理</button>
+    </c:if>
+
 </div>
 
 <!-- 审批系统模态框 -->
@@ -422,7 +484,7 @@
                             <div id="collapseOne" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
                                     <table border="1" style="width:100%;border-collapse: collapse;text-align: center" >
-                                        <tr><th>申请时间</th><th>申请人</th><th>当前工位</th><th>申请工位</th><th>外网配置</th><th>内网配置</th><th>审核状态</th></tr>
+                                        <tr><th>申请时间</th><th>申请人</th><th>当前工位</th><th>申请工位</th><th>外网配置</th><th>内网配置</th><th>操作</th></tr>
                                         <c:forEach var="deskChange" items="${deskChangelist2}">
                                             <tr>
                                                 <td>${deskChange.date}</td>
@@ -431,7 +493,7 @@
                                                 <td>${deskChange.deskWant}</td>
                                                 <td>${deskChange.netOutside}</td>
                                                 <td>${deskChange.netInside}</td>
-                                                <td>${deskChange.status}</td>
+                                                <td><button type="button" onclick="applydeskchange(${deskChange.id},'通过')" >通过</button><button type="button" onclick="applydeskchange(${deskChange.id},'驳回')" >驳回</button></td>
                                             </tr>
                                         </c:forEach>
                                     </table>
@@ -467,16 +529,16 @@
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
                                     <table border="1" style="width:100%;border-collapse: collapse;text-align: center" >
-                                        <tr><th>申请时间</th><th>申请人</th><th>离职日期</th><th>离职原因</th><th>联系电话</th><th>邮寄地址</th><th>审核状态</th></tr>
+                                        <tr><th>申请时间</th><th>申请人</th><th>离职日期</th><th>离职原因</th><th>联系电话</th><th>邮寄地址</th><th>操作</th></tr>
                                         <c:forEach var="resign" items="${resignlist2}">
                                             <tr>
                                                 <td>${resign.date}</td>
                                                 <td>${resign.name}</td>
                                                 <td>${resign.leaveDate}</td>
                                                 <td>${resign.reason}</td>
-                                                <td>${resign.tel}"/></td>
+                                                <td>${resign.tel}</td>
                                                 <td>${resign.postAddress}</td>
-                                                <td>${resign.status}</td>
+                                                <td><button type="button" onclick="applyresign(${resign.workId},'通过')" >通过</button><button type="button" onclick="applyresign(${resign.workId},'驳回')" >驳回</button></td>
                                             </tr>
                                         </c:forEach>
                                     </table>
@@ -495,7 +557,7 @@
                             <div id="collapseFive" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
                                     <table border="1" style="width:100%;border-collapse: collapse;text-align: center" >
-                                        <tr><th>申请时间</th><th>申请人</th><th>申诉日期</th><th>原因</th><th>是否有证明</th><th>证明类型</th><th>备注</th><th>审核状态</th></tr>
+                                        <tr><th>申请时间</th><th>申请人</th><th>申诉日期</th><th>原因</th><th>是否有证明</th><th>证明类型</th><th>备注</th><th>操作</th></tr>
                                         <c:forEach var="appeal" items="${appealList2}">
                                             <tr>
                                                 <td>${appeal.date}</td>
@@ -505,7 +567,7 @@
                                                 <td>${appeal.zhengming}</td>
                                                 <td>${appeal.type}</td>
                                                 <td>${appeal.others}</td>
-                                                <td>${appeal.status}</td>
+                                                <td><button type="button" onclick="applyworkday(${appeal.id},'通过')" >通过</button><button type="button" onclick="applyworkday(${appeal.id},'驳回')" >驳回</button></td>
                                             </tr>
                                         </c:forEach>
                                     </table>

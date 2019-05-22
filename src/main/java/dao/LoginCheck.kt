@@ -22,7 +22,13 @@ import java.security.MessageDigest
  */
 @Component
 class LoginCheck : DatabaseOperate {
+    override fun insertStaffWork(staffWork: StaffWork): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun updateStaffPersonalWorkId(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun loginForRegist(account: String, password: String): Boolean {
         var sqlSessionFactory: SqlSessionFactory? = null

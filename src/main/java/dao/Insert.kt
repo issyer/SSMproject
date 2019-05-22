@@ -12,6 +12,17 @@ import pojo.*
  */
 @Component
 class Insert : DatabaseOperate {
+    override fun insertStaffWork(staffWork: StaffWork): Int {
+        var resultCode = 0
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean(UserMapper::class.java)
+        resultCode = userMapper.insertStaffWork(staffWork)!!
+        return resultCode
+    }
+
+    override fun updateStaffPersonalWorkId(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun loginForRegist(account: String, password: String): Boolean {
         return false

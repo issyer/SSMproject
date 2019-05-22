@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserServiceInterface {
     public StaffWork getUser(String email);
     public int registUser(StaffPersonal staffPersonal);
-
+    public int registWoker(StaffWork staffWork);
     public int deskChangeApply(DeskChange deskChange);
     public List<DeskChange> getDeskChangeList(String workid);
     public List<DeskChange> getDeskChangeList2(String workid);
@@ -28,4 +28,6 @@ public interface UserServiceInterface {
     public Notice getNoticeContent(int id);
 
     public int updateStaffWorkPassword(String email, String password);
+
+    List<StaffPersonal> getNewWorkers();
 }

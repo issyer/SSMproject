@@ -25,4 +25,5 @@ public class DeskChange {
     private String netInside;
     private String status;
     private String date;
+    private int id;
 }

@@ -12,6 +12,14 @@ import pojo.*
  */
 @Component
 class Select : DatabaseOperate {
+    override fun updateStaffPersonalWorkId(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun insertStaffWork(staffWork: StaffWork): Int {
+        TODO(reason = "not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun loginForRegist(account: String, password: String): Boolean {
         return false
     }
@@ -43,6 +51,14 @@ class Select : DatabaseOperate {
         val userMapper = applicationContext.getBean(UserMapper::class.java)
         deskChange = userMapper.selectDeskChange(workid)
         return deskChange
+    }
+
+    fun selectStaffPersonals(): List<StaffPersonal> {
+        val staffPersonals: List<StaffPersonal>
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean(UserMapper::class.java)
+        staffPersonals = userMapper.selectStaffPersonal()
+        return staffPersonals
     }
 
     fun selectDeskChange2(workid: String): List<DeskChange> {

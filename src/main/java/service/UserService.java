@@ -61,6 +61,25 @@ public class UserService implements UserServiceInterface{
         return update.updateStaffPersonal(staffPersonal);
     }
 
+    public int doDeskChange(String result,int id) {
+        return update.updateDeskChange(result,id);
+    }
+
+    public int doResign(String result,String id) {
+        return update.updateResign(result,id);
+    }
+    public int doWorkday(String result,int id) {
+        return update.updateWorkday(result,id);
+    }
+    @Override
+    public int registWoker(StaffWork staffWork) {
+
+        int result = insert.insertStaffWork(staffWork);
+        update.updateStaffPersonalWorkId();
+        return result ;
+    }
+
+
     @Override
     public int deskChangeApply(DeskChange deskChange) {
         Date applyTime = new Date();
@@ -133,6 +152,11 @@ public class UserService implements UserServiceInterface{
     public int updateStaffWorkPassword(String workId, String password) {
         String p2 = getMD5String(password);
         return update.updatePassword(workId,p2);
+    }
+
+    @Override
+    public List<StaffPersonal> getNewWorkers() {
+        return select.selectStaffPersonals();
     }
 
     public  String getMD5String(String str) {

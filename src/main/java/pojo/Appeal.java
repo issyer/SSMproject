@@ -28,5 +28,6 @@ public class Appeal {
     @Size(min = 10,max = 250)
     private String others;
     private String status;
+    private int id;
 
 }

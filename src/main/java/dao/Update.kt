@@ -13,6 +13,20 @@ import pojo.StaffWork
  */
 @Component
 class Update : DatabaseOperate {
+    override fun insertStaffWork(staffWork: StaffWork): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
+    override fun updateStaffPersonalWorkId(): Int {
+        var resultCode = 0
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean<UserMapper>(UserMapper::class.java)
+        resultCode = userMapper.updateStaffPersonalWorkId()!!
+        return resultCode
+    }
+
+
     override fun loginForRegist(account: String, password: String): Boolean {
         return false
     }
@@ -42,6 +56,29 @@ class Update : DatabaseOperate {
         val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
         val userMapper = applicationContext.getBean<UserMapper>(UserMapper::class.java)
         resultCode = userMapper.updatePassword(workId, password)!!
+        return resultCode
+    }
+
+    fun updateDeskChange(applyresult:String, id:Int):Int{
+        var resultCode = 0
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean<UserMapper>(UserMapper::class.java)
+        resultCode = userMapper.updateDeskChange(applyresult, id)!!
+        return resultCode
+    }
+    fun updateResign(applyresult:String, workId:String):Int{
+        var resultCode = 0
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean<UserMapper>(UserMapper::class.java)
+        resultCode = userMapper.updateResign(applyresult, workId)!!
+        return resultCode
+    }
+
+    fun updateWorkday(applyresult:String, id:Int):Int{
+        var resultCode = 0
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean<UserMapper>(UserMapper::class.java)
+        resultCode = userMapper.updateWorkday(applyresult, id)!!
         return resultCode
     }
 

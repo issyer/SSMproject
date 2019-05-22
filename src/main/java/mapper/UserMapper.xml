@@ -21,16 +21,34 @@
         <result property="departmentHead" column="department_head"/>
     </resultMap>
     <select id="selectStaffWork" parameterType="java.lang.String" resultMap="staffworkmap">
-        select work_id,name,job,department,entry_time,work_desk,job_head,department_head from staff_work where work_email = #{email}
+        select work_id,name,job,photo,department,entry_time,work_desk,job_head,department_head,hr from staff_work where work_email = #{email}
+    </select>
+
+    <resultMap id="staffpersonalmap" type="staffpersonal">
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="photo" column="photo"/>
+    </resultMap>
+    <select id="selectStaffPersonal"  resultMap="staffpersonalmap">
+        select name,sex,photo from staff_personal where work_id is  null;
     </select>
 
     <update id="updateStaffPersonal" parameterType="staffpersonal">
         update staff_personal
-        set name = #{name}, age = #{age}, sex = #{sex},  birth = #{birth},  tel = #{tel},
+        set name = #{name}, age = #{age}, sex = #{sex},photo = #{photo},  birth = #{birth},  tel = #{tel},
         college = #{college},  profession = #{profession},  address = #{address},  nation = #{nation},
         political_status = #{politicalStatus} where idcardnum = #{idcardNum}
 
     </update>
+
+    <update id="updateStaffPersonalWorkId">
+       update staff_personal join staff_work on staff_personal.photo = staff_work.photo
+       set staff_personal.work_id = staff_work.work_id;
+    </update>
+
+    <insert id="insertStaffWork" parameterType="staffwork">
+        insert into staff_work values (#{workId},#{name},#{sex},#{workDesk},#{department},#{job},#{entryTime},#{pay},#{workEmail},#{password},'0','0',#{photo},'0')
+    </insert>
 
     <insert id="insertDeskChange" parameterType="deskchange">
         insert into workdesk_change values (#{workId},#{deskNow},#{staffName},#{deskWant},#{netOutside},#{netInside},'未审核',#{date})
@@ -49,6 +67,7 @@
     </select>
 
     <resultMap id="deskchangemap2" type="deskchange">
+        <result property="id" column="id"/>
         <result property="deskNow" column="desk_now"/>
         <result property="deskWant" column="desk_want"/>
         <result property="netOutside" column="net_outside"/>
@@ -58,7 +77,7 @@
         <result property="staffName" column="staff_name"/>
     </resultMap>
     <select id="selectDeskChange2" parameterType="java.lang.String" resultMap="deskchangemap2">
-        select desk_now,desk_want,net_outside,net_inside,status ,staff_name,date from workdesk_change where status = '未审核'
+        select id,desk_now,desk_want,net_outside,net_inside,status ,staff_name,date from workdesk_change where status = '未审核'
     </select>
 
     <insert id="insertResign" parameterType="resign">
@@ -118,7 +137,7 @@
         <result property="status" column="status"/>
     </resultMap>
     <select id="selectAppeal2" parameterType="java.lang.String" resultMap="appealmap2">
-        select date , name,not_agree_date ,reason,zhengming,type,others,status from workday_request where status = '未审核'
+        select id,date , name,not_agree_date ,reason,zhengming,type,others,status from workday_request where status = '未审核'
     </select>
 
     <resultMap id="noticemap" type="notice">
@@ -143,5 +162,18 @@
 
     <update id="updatePassword" >
         update staff_work set password = #{password} where work_id = #{workId}
+    </update>
+
+    <update id="updateDeskChange" >
+        update workdesk_change set status = #{applyresult} where id = #{id}
+    </update>
+
+
+    <update id="updateResign" >
+        update resign_request set status = #{applyresult} where workid = #{workId}
+    </update>
+
+    <update id="updateWorkday" >
+        update workday_request set status = #{applyresult} where id = #{id}
     </update>
 </mapper>

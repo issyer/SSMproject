@@ -204,4 +204,19 @@ function showprocessmanage() {
     window.location.href="adminchange.do?change=processmanage";
 };
 
+function manage() {
+    window.location.href="change.do?change=employeeManage";
+};
+
+function applydeskchange(id,result){
+    window.location.href="desk.do?applyresult="+result+"&id="+id+"";
+}
+
+function applyresign(workid,result){
+    window.location.href="resignApply.do?applyresult="+result+"&workId="+workid+"";
+}
+
+function applyworkday(id,result){
+    window.location.href="workday.do?applyresult="+result+"&id="+id+"";
+}
 
