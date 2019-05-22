@@ -18,6 +18,7 @@ public interface UserMapper {
     String  loginCheckByEmail(String email);
 
     StaffWork selectStaffWork(String email);
+    List<StaffWork> selectStaffWork2();
     int insertStaffWork(StaffWork staffWork);
 
     Integer updateStaffPersonal(StaffPersonal staffPersonal);
@@ -44,5 +45,5 @@ public interface UserMapper {
     Integer updateDeskChange(@Param("applyresult") String applyresult, @Param("id")int id);
     Integer updateResign(@Param("applyresult") String applyresult, @Param("workId")String workId);
     Integer updateWorkday(@Param("applyresult") String applyresult, @Param("id")int id);
-
+    Integer updateStaffWorkPower(@Param("workId") String workId, @Param("jobhead")int jobhead,@Param("departmenthead")int departmenthead, @Param("hr")int hr);
 }

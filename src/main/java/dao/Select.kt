@@ -35,7 +35,13 @@ class Select : DatabaseOperate {
         staffWork = userMapper.selectStaffWork(email)
         return staffWork
     }
-
+    fun selectStaffWork2(): List<StaffWork> {
+        val staffWork: List<StaffWork>
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean(UserMapper::class.java)
+        staffWork = userMapper.selectStaffWork2()
+        return staffWork
+    }
     override fun updateStaffPersonal(staffPersonal: StaffPersonal): Int {
         return 0
     }

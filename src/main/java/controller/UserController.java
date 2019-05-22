@@ -23,6 +23,7 @@ public class UserController {
     private LoginCheck loginCheck = null;
     private StaffWork staffWork ;
     private StaffWork admin ;
+    private List<StaffWork> staffWorks;
     private List<DeskChange> deskChange;
     private List<DeskChange> deskChange2;
     private List<Resign> resigns;
@@ -48,6 +49,8 @@ public class UserController {
             admin.setJob("系统管理员");
             admin.setDepartment("运营部");
             flag = "powermanage";
+            staffWorks = userService.getStaffWorkList();
+            adminView.addObject("staffWorklist",staffWorks);
             adminView.addObject("flag",flag);
             adminView.addObject("admin",admin);
             adminView.setViewName("admin");
@@ -277,6 +280,32 @@ public class UserController {
             modelAndView.setViewName("main");
         }
         return modelAndView;
+    }
+
+    @RequestMapping("/power")
+    public ModelAndView powerapply(String workId ,String result){
+        int isjobhead = 0;
+        int isdepartmenthead=0;
+        int ishr=0;
+        if(result.contains("job")){
+            isjobhead=1;
+        }
+        if(result.contains("department")){
+            isdepartmenthead=1;
+        }
+        if(result.contains("hr")){
+            ishr=1;
+        }
+        int resultCode = 0;
+        resultCode = userService.doStaffPower(workId,isjobhead,isdepartmenthead,ishr);
+        if(resultCode!=0){
+            staffWorks = userService.getStaffWorkList();
+            adminView.addObject("staffWorklist",staffWorks);
+            adminView.setViewName("admin");
+        }else {
+            adminView.setViewName("admin");
+        }
+        return adminView;
     }
 
 }

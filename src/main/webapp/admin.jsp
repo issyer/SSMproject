@@ -18,6 +18,18 @@
     <script type="text/javascript"  src="js/myjs.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <style>
+        table, td, th {
+            text-align: center;
+            border: 1px solid black;
+        }
+        input{
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body style="background:url(Image/champion.jpg);
     background-size:100% ,100%;
@@ -51,30 +63,40 @@
              class="display">
             <c:if test="${flag=='powermanage'}">
                 <div style=" margin-top:3%;word-wrap: break-word;word-break: normal; ">
-                    <form action="resign.do" method="post">
-                        <table style="width: 80%;height: 40%;margin-left: 10%;margin-top: 7%">
-                            <tr>
-                                <th>预计离职日期</th>
-                                <td><input type="text" name="leaveDate" style="width: 100%"></td>
-                            </tr>
-                            <tr>
-                                <th>离职原因</th>
-                                <td><textarea rows="5" style="width: 100%" placeholder="不少于10个字" name="reason"></textarea></td>
-                            </tr>
-                            <tr>
-                                <th>联系方式</th>
-                                <td><input type="text" style="width: 100%" name="tel" placeholder="必须为手机号"></td>
-                            </tr>
-                            <tr>
-                                <th>离职证明邮寄地址</th>
-                                <td><input type="text" style="width: 100%" name="postAddress" placeholder="省、市、区详细地址"></td>
-                            </tr>
-                            <tr>
-                                <td><button type="submit" value="提交申请" name="submit" class="css3button" >提交申请</button></td>
-                            </tr>
-                        </table>
+                        <table style="width: 90%;height: 40%;margin-left: 5%;margin-top: 7%">
+                            <tr><th>姓名</th><th>部门</th><th>职位</th><th>部门主管</th><th>小组主管</th><th>人事</th><th>操作</th></tr>
+                            <c:forEach var="staffwork" items="${staffWorklist}">
+                                <tr>
+                                    <td>${staffwork.name}</td>
+                                    <td>${staffwork.department}</td>
+                                    <td>${staffwork.job}</td>
 
-                    </form>
+
+                                    <c:if test="${staffwork.departmentHead}">
+                                        <td><input type="checkbox" name=${staffwork.workId} value="department" checked="checked"></td>
+                                    </c:if>
+                                    <c:if test="${!staffwork.departmentHead}">
+                                        <td><input type="checkbox" name=${staffwork.workId} value="department" ></td>
+                                    </c:if>
+
+                                    <c:if test="${staffwork.jobHead}">
+                                        <td><input type="checkbox" name=${staffwork.workId} value="job" checked="checked"></td>
+                                    </c:if>
+                                    <c:if test="${!staffwork.jobHead}">
+                                        <td><input type="checkbox" name=${staffwork.workId} value="job" ></td>
+                                    </c:if>
+
+                                    <c:if test="${staffwork.HR}">
+                                        <td><input type="checkbox" name=${staffwork.workId} value="hr" checked="checked"></td>
+                                    </c:if>
+                                    <c:if test="${!staffwork.HR}">
+                                        <td><input type="checkbox" name=${staffwork.workId} value="hr" ></td>
+                                    </c:if>
+
+                                    <td><button type="button" onclick="applypower(${staffwork.workId})" >确认授权</button></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
                 </div>
             </c:if>
             <c:if test="${flag=='noticemanage'}">

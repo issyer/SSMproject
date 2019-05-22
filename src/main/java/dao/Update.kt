@@ -81,5 +81,11 @@ class Update : DatabaseOperate {
         resultCode = userMapper.updateWorkday(applyresult, id)!!
         return resultCode
     }
-
+    fun updateStaffWorkPower(workId:String, jobhead:Int,departmenthead:Int,hr:Int):Int{
+        var resultCode = 0
+        val applicationContext = ClassPathXmlApplicationContext("spring/applicationContext.xml")
+        val userMapper = applicationContext.getBean<UserMapper>(UserMapper::class.java)
+        resultCode = userMapper.updateStaffWorkPower(workId,jobhead,departmenthead,hr)!!
+        return resultCode
+    }
 }

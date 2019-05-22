@@ -64,7 +64,9 @@ public class UserService implements UserServiceInterface{
     public int doDeskChange(String result,int id) {
         return update.updateDeskChange(result,id);
     }
-
+    public int doStaffPower(String workId,int jobhead,int departmenthead,int hr) {
+        return update.updateStaffWorkPower(workId,jobhead,departmenthead,hr);
+    }
     public int doResign(String result,String id) {
         return update.updateResign(result,id);
     }
@@ -112,7 +114,9 @@ public class UserService implements UserServiceInterface{
     public List<Resign> getResignList(String workid) {
         return select.selectResign(workid);
     }
-
+    public List<StaffWork> getStaffWorkList() {
+        return select.selectStaffWork2();
+    }
     @Override
     public List<Resign> getResignList2(String workid) {
         return select.selectResign2(workid);

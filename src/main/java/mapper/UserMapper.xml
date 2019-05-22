@@ -24,6 +24,10 @@
         select work_id,name,job,photo,department,entry_time,work_desk,job_head,department_head,hr from staff_work where work_email = #{email}
     </select>
 
+    <select id="selectStaffWork2" resultMap="staffworkmap">
+        select work_id,name,job,photo,department,entry_time,work_desk,job_head,department_head,hr from staff_work
+    </select>
+
     <resultMap id="staffpersonalmap" type="staffpersonal">
         <result property="name" column="name"/>
         <result property="sex" column="sex"/>
@@ -41,6 +45,10 @@
 
     </update>
 
+    <update id="updateStaffWorkPower">
+        update staff_work
+        set job_head = #{jobhead}, department_head = #{departmenthead}, hr = #{hr} where work_id = #{workId}
+    </update>
     <update id="updateStaffPersonalWorkId">
        update staff_personal join staff_work on staff_personal.photo = staff_work.photo
        set staff_personal.work_id = staff_work.work_id;
@@ -106,7 +114,7 @@
         <result property="status" column="status"/>
     </resultMap>
     <select id="selectResign2" parameterType="java.lang.String" resultMap="resignmap2">
-        select date , name,leave_date,reason,tel,post_address,status from resign_request where status = '未审核'
+        select workid,date , name,leave_date,reason,tel,post_address,status from resign_request where status = '未审核'
     </select>
 
     <insert id="insertAppeal" parameterType="appeal">

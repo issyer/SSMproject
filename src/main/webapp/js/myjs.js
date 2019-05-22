@@ -220,3 +220,15 @@ function applyworkday(id,result){
     window.location.href="workday.do?applyresult="+result+"&id="+id+"";
 }
 
+function applypower(workid){
+    obj = document.getElementsByName(workid);
+    check_val = [];
+    result = ""
+    for(k in obj){
+        if(obj[k].checked){
+            result+=obj[k].value
+        }
+    }
+    window.location.href="power.do?result="+result+"&workId="+workid+"";
+}
+
